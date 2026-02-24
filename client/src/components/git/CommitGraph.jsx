@@ -1,5 +1,5 @@
 import React, { useRef, useState, useMemo } from 'react';
-import { List, Card, Tag, Empty, Spin, Typography, Tooltip } from 'antd';
+import { List, Card, Tag, Empty, Spin, Typography, Tooltip, theme } from 'antd';
 import {
   ClockCircleOutlined,
   UserOutlined,
@@ -27,6 +27,7 @@ function parseRefs(refs) {
 }
 
 function CommitGraph() {
+  const { token } = theme.useToken();
   const { commits, loading } = useAppStore();
   const containerRef = useRef(null);
   const [selectedCommit, setSelectedCommit] = useState(null);
@@ -109,7 +110,8 @@ function CommitGraph() {
               style={{
                 padding: '8px 16px',
                 cursor: 'pointer',
-                background: selectedCommit?.hash === commit.hash ? '#f5f5f5' : 'transparent'
+                background: selectedCommit?.hash === commit.hash ? token.colorPrimaryBg : 'transparent',
+                borderRadius: 4
               }}
               onClick={() => setSelectedCommit(commit)}
             >
@@ -152,7 +154,7 @@ function CommitGraph() {
                       {commit.message}
                     </Text>
 
-                    <div style={{ display: 'flex', gap: 16, color: '#888', fontSize: 12 }}>
+                    <div style={{ display: 'flex', gap: 16, color: token.colorTextTertiary, fontSize: 12 }}>
                       <span>
                         <UserOutlined style={{ marginRight: 4 }} />
                         {commit.author}
