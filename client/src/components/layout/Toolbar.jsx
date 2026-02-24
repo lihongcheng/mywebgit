@@ -59,15 +59,37 @@ function Toolbar() {
   const localBranches = branches.local || [];
   const remoteBranches = branches.remote || [];
 
-  // Branch menu
-  const branchMenuItems = localBranches.map(b => ({
-    key: b.name,
-    label: b.name + (b.current ? ' (current)' : '')
-  }));
+  // Branch menu - includes local and remote branches
+  const branchMenuItems = [
+    { type: 'group', label: 'Local Branches' },
+    ...localBranches.map(b => ({
+      key: `local:${b.name}`,
+      label: b.name + (b.current ? ' (current)' : '')
+    })),
+    { type: 'divider' },
+    { type: 'group', label: 'Remote Branches' },
+    ...remoteBranches.map(b => ({
+      key: `remote:${b.name}`,
+      label: b.name
+    }))
+  ];
 
   const handleBranchMenuClick = async ({ key }) => {
-    if (key !== currentBranch) {
-      await checkout(key);
+    const [type, branchName] = key.split(':');
+    if (branchName !== currentBranch) {
+      if (type === 'remote') {
+        // For remote branches, checkout and track
+        const localName = branchName.replace(/^origin\//, '');
+        try {
+          await gitApi.checkoutRemote(currentRepo.id, branchName, localName);
+          notify.success(`Checked out '${branchName}' as new local branch '${localName}'`);
+          loadBranches();
+        } catch (error) {
+          notify.error(`Failed to checkout remote branch: ${error.message}`);
+        }
+      } else {
+        await checkout(branchName);
+      }
     }
   };
 

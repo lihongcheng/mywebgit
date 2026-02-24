@@ -220,6 +220,22 @@ router.post('/checkout', getRepoMiddleware, async (req, res) => {
 });
 
 /**
+ * POST /api/git/checkout-remote - Checkout remote branch as new local branch
+ */
+router.post('/checkout-remote', getRepoMiddleware, async (req, res) => {
+  try {
+    const { remoteBranch, localBranch } = req.body;
+    if (!remoteBranch || !localBranch) {
+      return res.status(400).json({ success: false, error: 'Remote branch and local branch names are required' });
+    }
+    await req.git.checkoutRemote(remoteBranch, localBranch);
+    res.json({ success: true });
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+/**
  * POST /api/git/rename-branch - Rename branch
  */
 router.post('/rename-branch', getRepoMiddleware, async (req, res) => {

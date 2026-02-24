@@ -64,6 +64,8 @@ export const gitApi = {
     api.delete('/git/branch', { data: { repoId, name, force } }),
   checkout: (repoId, branch) =>
     api.post('/git/checkout', { repoId, branch }),
+  checkoutRemote: (repoId, remoteBranch, localBranch) =>
+    api.post('/git/checkout-remote', { repoId, remoteBranch, localBranch }),
   renameBranch: (repoId, oldName, newName) =>
     api.post('/git/rename-branch', { repoId, oldName, newName }),
 

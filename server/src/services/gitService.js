@@ -243,6 +243,22 @@ class GitService {
   }
 
   /**
+   * Checkout remote branch as new local branch with tracking
+   */
+  async checkoutRemote(remoteBranch, localBranch) {
+    try {
+      // checkoutBranch creates a new local branch tracking the remote branch
+      await this.git.checkoutBranch(localBranch, remoteBranch);
+      return { success: true, localBranch, remoteBranch };
+    } catch (error) {
+      if (error.message && error.message.includes('index.lock')) {
+        throw new Error('Git index is locked. Please delete .git/index.lock file and try again.');
+      }
+      throw error;
+    }
+  }
+
+  /**
    * Delete branch
    */
   async deleteBranch(name, force = false) {
