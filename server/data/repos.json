@@ -1,0 +1,52 @@
+{
+  "repos": [
+    {
+      "id": "a60040c2-4767-4472-b119-2b3f7a895da3",
+      "path": "/Users/lihongcheng/Documents/code/php/changqing/wm-cq-live-api",
+      "name": "wm-cq-live-api",
+      "addedAt": "2026-02-24T04:16:53.878Z"
+    },
+    {
+      "id": "96afd64b-ef09-4d7c-ac33-30ccb7b13ee6",
+      "path": "/Users/lihongcheng/Documents/code/php/changqing/wm-cq-api",
+      "name": "wm-cq-api",
+      "addedAt": "2026-02-24T05:51:48.021Z"
+    },
+    {
+      "id": "5eb89b9f-1aea-42e0-aa88-06d1b841ed99",
+      "path": "/Users/lihongcheng/Documents/code/php/changqing/wm-live-middle",
+      "name": "wm-live-middle",
+      "addedAt": "2026-02-24T05:59:53.869Z"
+    },
+    {
+      "id": "82268bdf-ef06-4881-9904-dbbbca57a2d6",
+      "path": "/Users/lihongcheng/Documents/code/golang/changqing/cq-live-api-go",
+      "name": "cq-live-api-go",
+      "addedAt": "2026-02-24T06:01:22.164Z"
+    },
+    {
+      "id": "bfd716c2-41bd-4ac9-b94c-78356134a585",
+      "path": "/Users/lihongcheng/Documents/code/golang/changqing/cq-sale-middle",
+      "name": "cq-sale-middle",
+      "addedAt": "2026-02-24T06:01:56.000Z"
+    },
+    {
+      "id": "0b81c8cf-a436-429c-b5b5-5a5de51094f0",
+      "path": "/Users/lihongcheng/Documents/code/golang/changqing/ggo-service",
+      "name": "go-service",
+      "addedAt": "2026-02-24T06:02:43.889Z"
+    },
+    {
+      "id": "6b98ada0-c3e4-4c08-a043-e59297b35b70",
+      "path": "/Users/lihongcheng/Documents/code/golang/changqing/cq-deep-sale-middle",
+      "name": "cq-deep-sale-middle",
+      "addedAt": "2026-02-24T06:03:13.443Z"
+    },
+    {
+      "id": "b484023f-36bc-41ab-9994-21a785c1c401",
+      "path": "/Users/lihongcheng/Documents/code/golang/changqing/cq-api-go",
+      "name": "cq-api-go",
+      "addedAt": "2026-02-24T06:09:02.946Z"
+    }
+  ]
+}

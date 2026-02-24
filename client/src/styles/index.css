@@ -1,0 +1,105 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary-color: #1890ff;
+  --success-color: #52c41a;
+  --warning-color: #faad14;
+  --error-color: #ff4d4f;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scrollbar styles */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a1a1a1;
+}
+
+/* Branch graph styles */
+.branch-node {
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.branch-node:hover {
+  filter: brightness(1.1);
+}
+
+.branch-line {
+  stroke-width: 2;
+  fill: none;
+}
+
+/* File status colors */
+.status-modified {
+  color: #faad14;
+}
+
+.status-added {
+  color: #52c41a;
+}
+
+.status-deleted {
+  color: #ff4d4f;
+}
+
+.status-renamed {
+  color: #1890ff;
+}
+
+.status-conflicted {
+  color: #ff4d4f;
+  font-weight: bold;
+}
+
+/* Diff viewer styles */
+.diff-line-added {
+  background-color: #e6ffed;
+}
+
+.diff-line-removed {
+  background-color: #ffebe9;
+}
+
+.diff-line-header {
+  background-color: #f6f8fa;
+}
+
+/* Commit hash style */
+.commit-hash {
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+  font-size: 12px;
+  background: #f0f0f0;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
