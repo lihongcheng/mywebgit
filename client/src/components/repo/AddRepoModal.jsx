@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Modal, Input, Form } from 'antd';
+import { Modal, Input, Form, theme } from 'antd';
 
 function AddRepoModal({ visible, onClose, onAdd }) {
+  const { token } = theme.useToken();
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
 
@@ -68,12 +69,12 @@ function AddRepoModal({ visible, onClose, onAdd }) {
 
       <div style={{
         padding: 12,
-        background: '#f5f5f5',
-        borderRadius: 4,
+        background: token.colorBgLayout,
+        borderRadius: token.borderRadius,
         marginTop: 16
       }}>
         <strong>Example paths:</strong>
-        <ul style={{ margin: '8px 0 0 0', paddingLeft: 20, color: '#666' }}>
+        <ul style={{ margin: '8px 0 0 0', paddingLeft: 20, color: token.colorTextTertiary }}>
           <li>/topath/projects/my-project</li>
           <li>C:\Users\username\projects\my-project (Windows)</li>
         </ul>
