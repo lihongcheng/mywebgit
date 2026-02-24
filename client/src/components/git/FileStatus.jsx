@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { List, Button, Input, Checkbox, Tag, Empty, Spin, Space, Modal } from 'antd';
+import { List, Button, Input, Checkbox, Tag, Empty, Spin, Space, Modal, theme } from 'antd';
 import {
   PlusOutlined,
   MinusOutlined,
@@ -44,6 +44,7 @@ function getStatusInfo(file) {
 }
 
 function FileStatus() {
+  const { token } = theme.useToken();
   const { status, loading, stageFiles, unstageFiles, stageAll, unstageAll } = useGitStatus();
   const { commit } = useGitCommit();
 
@@ -113,7 +114,7 @@ function FileStatus() {
         const statusInfo = getStatusInfo(file);
         return (
           <List.Item
-            style={{ padding: '4px 8px', borderBottom: '1px solid #f0f0f0' }}
+            style={{ padding: '4px 8px', borderBottom: `1px solid ${token.colorBorderSecondary}` }}
           >
             <div style={{ display: 'flex', alignItems: 'center', width: '100%', gap: 8 }}>
               <Checkbox
@@ -157,11 +158,11 @@ function FileStatus() {
   return (
     <div style={{ height: '100%', display: 'flex' }}>
       {/* Unstaged Files */}
-      <div style={{ flex: 1, borderRight: '1px solid #f0f0f0', display: 'flex', flexDirection: 'column' }}>
+      <div style={{ flex: 1, borderRight: `1px solid ${token.colorBorderSecondary}`, display: 'flex', flexDirection: 'column' }}>
         <div style={{
           padding: '8px 12px',
-          background: '#fafafa',
-          borderBottom: '1px solid #f0f0f0',
+          background: token.colorBgContainer,
+          borderBottom: `1px solid ${token.colorBorderSecondary}`,
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center'
@@ -193,11 +194,11 @@ function FileStatus() {
       </div>
 
       {/* Staged Files */}
-      <div style={{ flex: 1, borderRight: '1px solid #f0f0f0', display: 'flex', flexDirection: 'column' }}>
+      <div style={{ flex: 1, borderRight: `1px solid ${token.colorBorderSecondary}`, display: 'flex', flexDirection: 'column' }}>
         <div style={{
           padding: '8px 12px',
-          background: '#fafafa',
-          borderBottom: '1px solid #f0f0f0',
+          background: token.colorBgContainer,
+          borderBottom: `1px solid ${token.colorBorderSecondary}`,
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center'
@@ -231,8 +232,8 @@ function FileStatus() {
       <div style={{ width: 300, display: 'flex', flexDirection: 'column' }}>
         <div style={{
           padding: '8px 12px',
-          background: '#fafafa',
-          borderBottom: '1px solid #f0f0f0'
+          background: token.colorBgContainer,
+          borderBottom: `1px solid ${token.colorBorderSecondary}`
         }}>
           <span style={{ fontWeight: 500 }}>Commit</span>
         </div>
@@ -254,8 +255,8 @@ function FileStatus() {
           </Button>
 
           {status.conflicted && status.conflicted.length > 0 && (
-            <div style={{ marginTop: 12, padding: 8, background: '#fff2f0', borderRadius: 4 }}>
-              <div style={{ color: '#ff4d4f', fontWeight: 500, marginBottom: 4 }}>
+            <div style={{ marginTop: 12, padding: 8, background: token.colorErrorBg, borderRadius: 4 }}>
+              <div style={{ color: token.colorError, fontWeight: 500, marginBottom: 4 }}>
                 Conflicts Detected!
               </div>
               <div style={{ fontSize: 12 }}>
@@ -267,16 +268,16 @@ function FileStatus() {
           )}
 
           {status.ahead > 0 && (
-            <div style={{ marginTop: 12, padding: 8, background: '#e6f7ff', borderRadius: 4 }}>
-              <div style={{ color: '#1890ff', fontSize: 12 }}>
+            <div style={{ marginTop: 12, padding: 8, background: token.colorPrimaryBg, borderRadius: 4 }}>
+              <div style={{ color: token.colorPrimary, fontSize: 12 }}>
                 {status.ahead} commit{status.ahead > 1 ? 's' : ''} ahead of origin
               </div>
             </div>
           )}
 
           {status.behind > 0 && (
-            <div style={{ marginTop: 12, padding: 8, background: '#fffbe6', borderRadius: 4 }}>
-              <div style={{ color: '#faad14', fontSize: 12 }}>
+            <div style={{ marginTop: 12, padding: 8, background: token.colorWarningBg, borderRadius: 4 }}>
+              <div style={{ color: token.colorWarning, fontSize: 12 }}>
                 {status.behind} commit{status.behind > 1 ? 's' : ''} behind origin
               </div>
             </div>
@@ -293,13 +294,14 @@ function FileStatus() {
         width={800}
       >
         <pre style={{
-          background: '#f5f5f5',
+          background: token.colorBgContainer,
           padding: 12,
           borderRadius: 4,
           maxHeight: 400,
           overflow: 'auto',
           fontFamily: 'monospace',
-          fontSize: 12
+          fontSize: 12,
+          border: `1px solid ${token.colorBorderSecondary}`
         }}>
           {diffContent}
         </pre>

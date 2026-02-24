@@ -32,6 +32,7 @@ const notify = {
 };
 
 function Toolbar() {
+  const { token } = theme.useToken();
   const { currentRepo, branches, setBranches } = useAppStore();
   const { createBranch, checkout, deleteBranch, loadBranches } = useGitBranch();
   const { loadStatus } = useGitStatus();
@@ -189,8 +190,8 @@ function Toolbar() {
     <>
       <div style={{
         padding: '8px 16px',
-        background: '#fafafa',
-        borderBottom: '1px solid #f0f0f0',
+        background: token.colorBgContainer,
+        borderBottom: `1px solid ${token.colorBorderSecondary}`,
         display: 'flex',
         alignItems: 'center',
         gap: 8
