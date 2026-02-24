@@ -20,18 +20,20 @@ class ErrorBoundary extends React.Component {
         <div style={{
           padding: 40,
           textAlign: 'center',
-          color: '#ff4d4f'
+          color: 'var(--error-color)'
         }}>
           <h1>Something went wrong</h1>
           <pre style={{
-            background: '#f5f5f5',
+            background: 'var(--bg-elevated)',
+            color: 'var(--text-primary)',
             padding: 16,
             borderRadius: 4,
             overflow: 'auto',
             maxWidth: 600,
             margin: '16px auto',
             textAlign: 'left',
-            fontSize: 12
+            fontSize: 12,
+            border: '1px solid var(--border-color)'
           }}>
             {this.state.error?.toString()}
           </pre>
@@ -39,7 +41,11 @@ class ErrorBoundary extends React.Component {
             onClick={() => window.location.reload()}
             style={{
               padding: '8px 16px',
-              cursor: 'pointer'
+              cursor: 'pointer',
+              background: 'var(--primary-color)',
+              color: '#fff',
+              border: 'none',
+              borderRadius: 4
             }}
           >
             Reload Page

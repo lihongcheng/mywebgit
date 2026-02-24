@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useMemo } from 'react';
 import G6 from '@antv/g6';
+import { theme } from 'antd';
+import { useAppStore } from '../../store';
 
 // Branch colors
 const COLORS = {
@@ -22,6 +24,8 @@ const getBranchColor = (branchName) => {
 };
 
 function BranchGraph({ commits, branches, width = 800, height = 400 }) {
+  const { token } = theme.useToken();
+  const { darkMode } = useAppStore();
   const containerRef = useRef(null);
   const graphRef = useRef(null);
 
@@ -82,6 +86,9 @@ function BranchGraph({ commits, branches, width = 800, height = 400 }) {
       graphRef.current.destroy();
     }
 
+    const strokeColor = darkMode ? '#303030' : '#fff';
+    const hoverStroke = darkMode ? '#1890ff' : '#1890ff';
+
     // Create new graph
     const graph = new G6.Graph({
       container: containerRef.current,
@@ -101,14 +108,15 @@ function BranchGraph({ commits, branches, width = 800, height = 400 }) {
         size: 16,
         style: {
           fill: '#1890ff',
-          stroke: '#fff',
+          stroke: strokeColor,
           lineWidth: 2
         },
         labelCfg: {
           position: 'bottom',
           offset: 10,
           style: {
-            fontSize: 10
+            fontSize: 10,
+            fill: token.colorText
           }
         }
       },
@@ -123,12 +131,12 @@ function BranchGraph({ commits, branches, width = 800, height = 400 }) {
       nodeStateStyles: {
         hover: {
           fill: '#40a9ff',
-          stroke: '#1890ff',
+          stroke: hoverStroke,
           lineWidth: 3
         },
         selected: {
           fill: '#1890ff',
-          stroke: '#1890ff',
+          stroke: hoverStroke,
           lineWidth: 4
         }
       }
@@ -153,14 +161,14 @@ function BranchGraph({ commits, branches, width = 800, height = 400 }) {
         graphRef.current.destroy();
       }
     };
-  }, [graphData, width, height]);
+  }, [graphData, width, height, darkMode, token.colorText]);
 
   if (!commits || commits.length === 0) {
     return null;
   }
 
   return (
-    <div ref={containerRef} style={{ width, height, background: '#fafafa', borderRadius: 4 }} />
+    <div ref={containerRef} style={{ width, height, background: token.colorBgContainer, borderRadius: token.borderRadius }} />
   );
 }
 
