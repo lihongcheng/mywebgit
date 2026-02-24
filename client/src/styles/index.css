@@ -7,6 +7,26 @@
   --success-color: #52c41a;
   --warning-color: #faad14;
   --error-color: #ff4d4f;
+
+  /* Light mode variables */
+  --bg-container: #ffffff;
+  --bg-layout: #f5f5f5;
+  --bg-elevated: #fafafa;
+  --border-color: #f0f0f0;
+  --text-primary: rgba(0, 0, 0, 0.88);
+  --text-secondary: rgba(0, 0, 0, 0.65);
+  --text-tertiary: rgba(0, 0, 0, 0.45);
+}
+
+/* Dark mode variables */
+[data-theme='dark'] {
+  --bg-container: #141414;
+  --bg-layout: #000000;
+  --bg-elevated: #1f1f1f;
+  --border-color: #303030;
+  --text-primary: rgba(255, 255, 255, 0.88);
+  --text-secondary: rgba(255, 255, 255, 0.65);
+  --text-tertiary: rgba(255, 255, 255, 0.45);
 }
 
 * {
@@ -26,23 +46,37 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Scrollbar styles */
+/* Light mode scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #c1c1c1;
+  background: rgba(0, 0, 0, 0.15);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #a1a1a1;
+  background: rgba(0, 0, 0, 0.25);
+}
+
+/* Dark mode scrollbar */
+[data-theme='dark'] ::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+[data-theme='dark'] ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+}
+
+[data-theme='dark'] ::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
 }
 
 /* Branch graph styles */
@@ -82,7 +116,7 @@ body {
   font-weight: bold;
 }
 
-/* Diff viewer styles */
+/* Diff viewer styles - Light mode */
 .diff-line-added {
   background-color: #e6ffed;
 }
@@ -92,14 +126,65 @@ body {
 }
 
 .diff-line-header {
-  background-color: #f6f8fa;
+  background-color: var(--bg-elevated);
 }
 
-/* Commit hash style */
+/* Diff viewer styles - Dark mode */
+[data-theme='dark'] .diff-line-added {
+  background-color: rgba(82, 196, 26, 0.15);
+}
+
+[data-theme='dark'] .diff-line-removed {
+  background-color: rgba(255, 77, 79, 0.15);
+}
+
+[data-theme='dark'] .diff-line-header {
+  background-color: var(--bg-elevated);
+}
+
+/* Commit hash style - Light mode */
 .commit-hash {
   font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
   font-size: 12px;
-  background: #f0f0f0;
+  background: var(--bg-elevated);
   padding: 2px 6px;
   border-radius: 4px;
+  color: var(--text-primary);
+}
+
+/* Ant Design overrides for light mode consistency */
+.ant-layout-sider-light {
+  background: var(--bg-container) !important;
+}
+
+.ant-list-item {
+  border-bottom: 1px solid var(--border-color) !important;
+}
+
+.ant-card {
+  background: var(--bg-container) !important;
+}
+
+/* Fix white bar issues */
+.ant-layout-content {
+  background: var(--bg-layout) !important;
+}
+
+.ant-layout-header {
+  background: var(--bg-container) !important;
+}
+
+/* Modal and overlay backgrounds */
+.ant-modal-content {
+  background: var(--bg-container) !important;
+}
+
+.ant-dropdown-menu {
+  background: var(--bg-container) !important;
+}
+
+/* Ensure no white gaps in split panels */
+.split-panel-left,
+.split-panel-right {
+  background: var(--bg-container);
 }
