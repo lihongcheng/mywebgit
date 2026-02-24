@@ -1,3 +1,4 @@
 node_modules
 plan.md
 .claude
+server/data/repos.json
